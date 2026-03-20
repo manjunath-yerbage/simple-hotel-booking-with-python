@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking - Karnataka</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to Karnataka Hotel Booking</h1>
+    <form action="{{ url_for('select_city') }}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+        <label for="phone">Phone Number:</label>
+        <input type="text" name="phone" id="phone" required>
+        <label for="city">Select City:</label>
+        <select name="city" id="city" required>
+            {% for city in cities %}
+            <option value="{{ city }}">{{ city }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Find Hotels</button>
+    </form>
+</body>
+</html>

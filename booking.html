@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Hotel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Book Hotel in {{ city }}</h1>
+    <p>Hello {{ name }}, select a hotel in {{ city }}:</p>
+    <form action="{{ url_for('payment') }}" method="post">
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="phone" value="{{ phone }}">
+        <input type="hidden" name="city" value="{{ city }}">
+        
+        <div class="section">
+            <h3>Select Hotel</h3>
+            {% for h in hotels %}
+            <input type="radio" name="hotel" value="{{ h }}" required> {{ h }}<br>
+            {% endfor %}
+        </div>
+        
+        <div class="section">
+            <h3>Select Room Type</h3>
+            <input type="radio" name="room_type" value="single" required> Single Bed (₹1000 per room)<br>
+            <input type="radio" name="room_type" value="double" required> Double Bed (₹1500 per room)<br>
+        </div>
+        
+        <div class="section">
+            <h3>Number of Rooms</h3>
+            <label for="rooms">Number of Rooms:</label>
+            <input type="number" name="rooms" id="rooms" min="1" required>
+        </div>
+        
+        <button type="submit">Proceed to Payment</button>
+    </form>
+</body>
+</html>
